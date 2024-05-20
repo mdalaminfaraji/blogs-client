@@ -1,4 +1,3 @@
-import DeletePost from "@/components/home/DeletePost";
 import {
   Box,
   Button,
@@ -24,7 +23,6 @@ async function getBlogData() {
 }
 export default async function Home() {
   const { data } = await getBlogData();
-  console.log(data);
   return (
     <Container sx={{ my: 6 }}>
       <Typography
@@ -82,8 +80,6 @@ export default async function Home() {
                   <Link href={`/${posts.id}`}>
                     <Button size="small">view Details</Button>
                   </Link>
-
-                  <DeletePost id={posts.id} />
                 </CardActions>
               </Card>
             </Grid>

@@ -1,10 +1,19 @@
 import { formatDate } from "@/utils/formatDate";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
+
+export async function generateStaticParams() {
+  const res = await fetch(`https://blog-server-hazel.vercel.app/posts`);
+  const Blogs = await res.json();
+  return Blogs?.data
+    ?.slice(0, 2)
+    .map((blog) => ({ blogId: blog.id.toString() }));
+}
 async function getSingleBlogData(blogId) {
   console.log(blogId);
   const res = await fetch(
-    `https://blog-server-hazel.vercel.app/posts/${blogId}`
+    `https://blog-server-hazel.vercel.app/posts/${blogId}`,
+    { cache: "no-store" }
   );
 
   if (!res.ok) {
@@ -14,10 +23,9 @@ async function getSingleBlogData(blogId) {
   return res.json();
 }
 export default async function BlogDetailPage({ params }) {
+  console.log(params);
   const { blogId } = params;
-  console.log(blogId);
   const { data } = await getSingleBlogData(blogId);
-  console.log(data);
   return (
     <Container sx={{ my: 5 }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
