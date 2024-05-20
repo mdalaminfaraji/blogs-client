@@ -1,3 +1,4 @@
+import DeletePost from "@/components/home/DeletePost";
 import { formatDate } from "@/utils/formatDate";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
@@ -23,7 +24,6 @@ async function getSingleBlogData(blogId) {
   return res.json();
 }
 export default async function BlogDetailPage({ params }) {
-  console.log(params);
   const { blogId } = params;
   const { data } = await getSingleBlogData(blogId);
   return (
@@ -40,8 +40,7 @@ export default async function BlogDetailPage({ params }) {
             <Image
               src={data?.imageurl}
               alt={data?.title}
-              layout="fill" // Fill the container
-              // objectFit="cover" // Cover container while maintaining aspect ratio
+              layout="fill"
               style={{ borderRadius: "10px" }}
             />
           </div>
@@ -69,6 +68,8 @@ export default async function BlogDetailPage({ params }) {
           <Typography sx={{ my: 2 }}>
             CreatedAt: {formatDate(data?.created_at)}
           </Typography>
+
+          <DeletePost id={data?.id} />
         </Grid>
       </Grid>
     </Container>

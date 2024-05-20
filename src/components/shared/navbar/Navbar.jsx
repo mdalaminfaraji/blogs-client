@@ -23,7 +23,13 @@ const Navbar = () => {
           <Typography component={Link} href="/" sx={{ textDecoration: "none" }}>
             Home
           </Typography>
-          <Typography>Create Blog</Typography>
+          <Typography
+            component={Link}
+            href="/create-blog"
+            sx={{ textDecoration: "none" }}
+          >
+            Create Blog
+          </Typography>
           <Typography sx={{ display: { xs: "none", sm: "block" } }}>
             Contact
           </Typography>
