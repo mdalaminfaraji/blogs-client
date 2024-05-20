@@ -30,7 +30,11 @@ const Navbar = () => {
           >
             Create Blog
           </Typography>
-          <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+          <Typography
+            sx={{
+              display: { xs: "none", sm: "block" },
+            }}
+          >
             Contact
           </Typography>
           <Typography sx={{ display: { xs: "none", sm: "block" } }}>

@@ -58,7 +58,9 @@ export default function BlogCard({ data }) {
               </CardContent>
               <CardActions sx={{ width: "160px", mx: "auto" }}>
                 <Link href={`/${posts.id}`}>
-                  <Button size="small">view Details</Button>
+                  <Button size="small" sx={{ py: "4px" }}>
+                    view Details
+                  </Button>
                 </Link>
               </CardActions>
             </Card>

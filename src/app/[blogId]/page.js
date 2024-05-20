@@ -1,7 +1,8 @@
 import DeletePost from "@/components/home/DeletePost";
 import { formatDate } from "@/utils/formatDate";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const res = await fetch(`https://blog-server-hazel.vercel.app/posts`);
@@ -11,7 +12,6 @@ export async function generateStaticParams() {
     .map((blog) => ({ blogId: blog.id.toString() }));
 }
 async function getSingleBlogData(blogId) {
-  console.log(blogId);
   const res = await fetch(
     `https://blog-server-hazel.vercel.app/posts/${blogId}`,
     { cache: "no-store" }
@@ -70,6 +70,13 @@ export default async function BlogDetailPage({ params }) {
           </Typography>
 
           <DeletePost id={data?.id} />
+          <Button
+            component={Link}
+            href={`/edit-blog/?id=${data?.id}`}
+            sx={{ mx: 2 }}
+          >
+            Edit
+          </Button>
         </Grid>
       </Grid>
     </Container>
