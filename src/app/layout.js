@@ -4,6 +4,8 @@ import { Toaster } from "sonner";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "@/lib/theme/theme";
+import Navbar from "@/components/shared/navbar/Navbar";
+import Footer from "@/components/shared/footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,8 +19,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <Navbar />
             <Toaster position="top-center" />
             {children}
+            <Footer />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
